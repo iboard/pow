@@ -32,6 +32,7 @@ defmodule Pow.MixProject do
   end
 
   defp extra_applications(:test), do: [:ecto, :logger, :mnesia]
+  defp extra_applications(:prod), do: [:ecto, :logger, :mnesia]
   defp extra_applications(_), do: [:logger]
 
   defp xref, do: [xref: [exclude: :mnesia]]
@@ -42,13 +43,11 @@ defmodule Pow.MixProject do
       {:phoenix, ">= 1.3.0 and < 1.6.0"},
       {:phoenix_html, ">= 2.0.0 and <= 3.0.0"},
       {:plug, ">= 1.5.0 and < 2.0.0", optional: true},
-
       {:phoenix_ecto, "~> 4.1", only: [:dev, :test]},
       {:credo, "~> 1.2", only: [:dev, :test]},
-      {:jason, "~> 1.0", only: [:dev, :test]}, # Credo requires jason to exist also in :dev
-
+      # Credo requires jason to exist also in :dev
+      {:jason, "~> 1.0", only: [:dev, :test]},
       {:ex_doc, "~> 0.21", only: :dev},
-
       {:ecto_sql, "~> 3.3", only: [:test]},
       {:plug_cowboy, "~> 2.1", only: [:test]},
       {:postgrex, "~> 0.15", only: [:test]}
@@ -108,10 +107,10 @@ defmodule Pow.MixProject do
         "Phoenix extension": ~r/^Pow.Extension.Phoenix/,
         "Store handling": ~r/^Pow.Store/,
         "Mix helpers": ~r/^Mix.Pow/,
-        "PowEmailConfirmation": ~r/^PowEmailConfirmation/,
-        "PowPersistentSession": ~r/^PowPersistentSession/,
-        "PowResetPassword": ~r/^PowResetPassword/,
-        "PowInvitation": ~r/^PowInvitation/
+        PowEmailConfirmation: ~r/^PowEmailConfirmation/,
+        PowPersistentSession: ~r/^PowPersistentSession/,
+        PowResetPassword: ~r/^PowResetPassword/,
+        PowInvitation: ~r/^PowInvitation/
       ],
       groups_for_extras: [
         Extensions: Path.wildcard("lib/extensions/*/README.md"),
